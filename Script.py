@@ -2,7 +2,6 @@ class script(object):
     START_TXT = """<b><u>🚩 ᴊᴀɪ ꜱʜʀɪ ʀᴀᴍ 🚩</u></b>
 
 <b>ʜᴇʏ {}, {}</b>
-website = """<b><a https://www.google.com/search?q=filmy4uhd.site">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://filmy4uhd.vercel.app">[ filmy4uhd.site ]</a></b>"""
 
 <b>🤖 ɪ ᴀᴍ <a href=https://t.me/{}>{}</a>, ᴛʜᴇ ᴍᴏꜱᴛ ᴘᴏᴡᴇʀꜰᴜʟ ᴀᴜᴛᴏ ꜰɪʟᴛᴇʀ ʙᴏᴛ ᴡɪᴛʜ ᴘʀᴇᴍɪᴜᴍ ꜰᴇᴀᴛᴜʀᴇꜱ.</b>
 """
