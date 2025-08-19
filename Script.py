@@ -230,8 +230,9 @@ Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
 🎧 ᴀᴜᴅɪᴏ    : <b>{language}</b>
 🔥 ʀᴀᴛɪɴɢ   : <b>{rating}</b>
 {episodes}
-</blockquote>
 CAPTION = """<b><a https://www.google.com/search?q=filmy4uhd.site">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://filmy4uhd.vercel.app">[ filmy4uhd.site ]</a></b>"""
+
+</blockquote>
 
 🔍 <b>Sᴇᴀʀᴄʜ →</b> {search_link}
 """
