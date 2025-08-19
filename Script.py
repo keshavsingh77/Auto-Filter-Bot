@@ -230,7 +230,7 @@ Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
 🎧 ᴀᴜᴅɪᴏ    : <b>{language}</b>
 🔥 ʀᴀᴛɪɴɢ   : <b>{rating}</b>
 {episodes}
-"""⚜️ Powered By : <a href="https://www.google.com/search?q=filmy4uhd.site">[ filmy4uhd.site ]</a></b>"""
+""" Powered By : <a href="https://www.google.com/search?q=filmy4uhd.site">[ filmy4uhd.site ]</a></b>"""
 </blockquote>
 
 
