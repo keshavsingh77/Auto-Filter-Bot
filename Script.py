@@ -5,7 +5,7 @@ class script(object):
 
 <b>🤖 ɪ ᴀᴍ <a href=https://t.me/{}>{}</a>, ᴛʜᴇ ᴍᴏꜱᴛ ᴘᴏᴡᴇʀꜰᴜʟ ᴀᴜᴛᴏ ꜰɪʟᴛᴇʀ ʙᴏᴛ ᴡɪᴛʜ ᴘʀᴇᴍɪᴜᴍ ꜰᴇᴀᴛᴜʀᴇꜱ.</b>
 """
-    ⚜️ Powered By : <a href="https://www.google.com/search?q=filmy4uhd.site">[ filmy4uhd.site ]</a></b>
+    ⚜ Powered By : <a href="https://www.google.com/search?q=filmy4uhd.site">[ filmy4uhd.site ]</a></b>
 
     GSTART_TXT = """<b>🚩 ᴊᴀɪ ꜱʜʀɪ ʀᴀᴍ 🚩</b>
 
