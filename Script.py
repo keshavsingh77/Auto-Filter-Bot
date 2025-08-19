@@ -2,9 +2,10 @@ class script(object):
     START_TXT = """<b><u>🚩 ᴊᴀɪ ꜱʜʀɪ ʀᴀᴍ 🚩</u></b>
 
 <b>ʜᴇʏ {}, {}</b>
+
 <b>🤖 ɪ ᴀᴍ <a href=https://t.me/{}>{}</a>, ᴛʜᴇ ᴍᴏꜱᴛ ᴘᴏᴡᴇʀꜰᴜʟ ᴀᴜᴛᴏ ꜰɪʟᴛᴇʀ ʙᴏᴛ ᴡɪᴛʜ ᴘʀᴇᴍɪᴜᴍ ꜰᴇᴀᴛᴜʀᴇꜱ.</b>
 """
-
+"""⚜️ Powered By : <a href="https://www.google.com/search?q=filmy4uhd.site">[ filmy4uhd.site ]</a></b>"""
 
     GSTART_TXT = """<b>🚩 ᴊᴀɪ ꜱʜʀɪ ʀᴀᴍ 🚩</b>
 
@@ -65,7 +66,7 @@ class script(object):
 ├⋟ ᴀʟʟ ɢʀᴏᴜᴘs ⋟ <code>{}</code>
 ├⋟ ᴘʀᴇᴍɪᴜᴍ ᴜꜱᴇʀꜱ ⋟ <code>{}</code>
 ├⋟ ᴀʟʟ ꜰɪʟᴇs ⋟ <code>{}</code>
-├⋟ ᴜsᴇᴅ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>⁰
+├⋟ ᴜsᴇᴅ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
 ├⋟ ꜰʀᴇᴇ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
 │
 <b>├────[ 🗳 ᴅᴀᴛᴀʙᴀsᴇ 2 🗳 ]────⍟</b>   
@@ -215,7 +216,7 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<b><a https://www.google.com/search?q=filmy4uhd.site">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://filmy4uhd.vercel.app">[ filmy4uhd.site ]</a></b>"""
+    CAPTION = """<b><a href="https://t.me/dreamxbotz">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://www.google.com/search?q=filmy4uhd.site">[ filmy4uhd.site ]</a></b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
@@ -230,9 +231,9 @@ Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
 🎧 ᴀᴜᴅɪᴏ    : <b>{language}</b>
 🔥 ʀᴀᴛɪɴɢ   : <b>{rating}</b>
 {episodes}
-CAPTION = """<b><a https://www.google.com/search?q=filmy4uhd.site">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://filmy4uhd.vercel.app">[ filmy4uhd.site ]</a></b>"""
-
+"""⚜️ Powered By : <a href="https://www.google.com/search?q=filmy4uhd.site">[ filmy4uhd.site ]</a></b>"""
 </blockquote>
+
 
 🔍 <b>Sᴇᴀʀᴄʜ →</b> {search_link}
 """
@@ -249,12 +250,12 @@ CAPTION = """<b><a https://www.google.com/search?q=filmy4uhd.site">{file_name}</
 <b>Requested by : {message.from_user.mention}</b>"""
 
     LOGO = r"""
-███████╗██╗██╗     ███╗   ███╗██╗   ██╗███████╗██╗  ██╗██╗   ██╗██╗  ██╗██████╗ 
-██╔════╝██║██║     ████╗ ████║██║   ██║██╔════╝██║  ██║╚██╗ ██╔╝██║ ██╔╝██╔══██╗
-█████╗░░██║██║     ██╔████╔██║██║   ██║█████╗░░███████║ ╚████╔╝ █████═╝ ██║  ██║
-██╔══╝░░██║██║     ██║╚██╔╝██║██║   ██║██╔══╝░░██╔══██║  ╚██╔╝  ██╔═██╗ ██║  ██║
-██║░░░░░██║███████╗██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║   ██║   ██║ ╚██╗██████╔╝
-╚═╝░░░░░╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═════╝ 
+    ██████╗░██████╗░███████╗░█████╗░███╗░░░███╗██╗░░██╗██████╗░░█████╗░████████╗███████╗
+    ██╔══██╗██╔══██╗██╔════╝██╔══██╗████╗░████║╚██╗██╔╝██╔══██╗██╔══██╗╚══██╔══╝╚════██║
+    ██║░░██║██████╔╝█████╗░░███████║██╔████╔██║░╚███╔╝░██████╦╝██║░░██║░░░██║░░░░░███╔═╝
+    ██║░░██║██╔══██╗██╔══╝░░██╔══██║██║╚██╔╝██║░██╔██╗░██╔══██╗██║░░██║░░░██║░░░██╔══╝░░
+    ██████╔╝██║░░██║███████╗██║░░██║██║░╚═╝░██║██╔╝╚██╗██████╦╝╚█████╔╝░░░██║░░░███████╗
+    ╚═════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═════╝░░╚════╝░░░░╚═╝░░░╚══════╝
 
     𝙱𝙾𝚃 𝚆𝙾𝚁𝙺𝙸𝙽𝙶 𝙿𝚁𝙾𝙿𝙴𝚁𝙻𝚈....
     """
@@ -278,7 +279,7 @@ CAPTION = """<b><a https://www.google.com/search?q=filmy4uhd.site">{file_name}</
 ◉ 60 ᴅᴀʏꜱ - 75 ₹  / 75 ꜱᴛᴀʀ
 
 •─────•─────────•─────•
-🏷️ <a href='https://filmy4uhd.vercel.app'>ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ ᴘʀᴏᴏꜰ</a>
+🏷️ <a href='https://t.me/dreamxbotz'>ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ ᴘʀᴏᴏꜰ</a>
 
 ‼️ ᴍᴜꜱᴛ ꜱᴇɴᴅ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ ᴀꜰᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ.
 ‼️ ᴀꜰᴛᴇʀ ꜱᴇɴᴅɪɴɢ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ ɢɪᴠᴇ ᴜꜱ ꜱᴏᴍᴇᴛɪᴍᴇꜱ ᴛᴏ ᴀᴅᴅ ʏᴏᴜ ɪɴ ᴘʀᴇᴍɪᴜᴍ ʟɪꜱᴛ."""
@@ -369,7 +370,7 @@ CAPTION = """<b><a https://www.google.com/search?q=filmy4uhd.site">{file_name}</
 ○ ᴍᴜʟᴛɪ-ᴘʟᴀʏᴇʀ sᴛʀᴇᴀᴍɪɴɢ ʟɪɴᴋs
 ○ ᴀᴅ-ғʀᴇᴇ ᴇxᴘᴇʀɪᴇɴᴄᴇ
 
-👨‍💻 ᴄᴏɴᴛᴀᴄᴛ ᴛʜᴇ <a href='https://t.me/moviesbazaarsupp'>Owner</a> ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ᴛʀɪᴀʟ.
+👨‍💻 ᴄᴏɴᴛᴀᴄᴛ ᴛʜᴇ <a href='https://t.me/dreamxbotz'>Owner</a> ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ᴛʀɪᴀʟ.
 
 ➛ ᴜꜱᴇ /plan ᴛᴏ ꜱᴇᴇ ᴀʟʟ ᴏᴜʀ ᴘʟᴀɴꜱ ᴀᴛ ᴏɴᴄᴇ.
 ➛ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴀᴄᴛɪᴠᴇ ᴘʟᴀɴ ʙʏ ᴜꜱɪɴɢ : /myplan</b>"""
@@ -394,7 +395,7 @@ CAPTION = """<b><a https://www.google.com/search?q=filmy4uhd.site">{file_name}</
     SOURCE_TXT ="""<b>ՏOᑌᖇᑕᗴ ᑕOᗪᗴ : 👇 </b>
 
 This Is An Open-Source Project. You Can Use It Freely, But Selling The Source Code Is Strictly Prohibited.\n
-ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ʜᴇʀᴇ ◉› :<a href=https://filmy4uhd.vercel.app/>𝓓𝓻𝓮𝓪𝓶𝔁𝓑𝓸𝓽𝔃</a>\n """
+ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ʜᴇʀᴇ ◉› :<a https://www.google.com/search?q=filmy4uhd.site>𝓓𝓻𝓮𝓪𝓶𝔁𝓑𝓸𝓽𝔃</a>\n """
 
     SETTING_TXT = """    
 <u>ꜱᴇᴛᴛɪɴɢꜱ</u> :
