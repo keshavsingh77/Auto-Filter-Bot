@@ -441,13 +441,14 @@ def generate_movie_message(movie_doc, base_name):
             episodes_by_season[season].add(episode)
 
     primary_tag = "#SERIES" if "#SERIES" in all_tags else "#MOVIE"
+
+    # ✅ Episodes block
     epi_block = ""
     if episodes_by_season:
         episode_lines = []
         for season, episodes in sorted(episodes_by_season.items(), key=lambda x: int(x[0])):
             singles = []
             ranges = []
-
             for ep in episodes:
                 if "-" in ep:
                     ranges.append(ep)
@@ -456,7 +457,6 @@ def generate_movie_message(movie_doc, base_name):
                         singles.append(int(ep))
                     except ValueError:
                         ranges.append(ep)
-
             singles.sort()
             collapsed = []
             start = end = None
@@ -470,7 +470,6 @@ def generate_movie_message(movie_doc, base_name):
                     start = end = num
             if start is not None:
                 collapsed.append(str(start) if start == end else f"{start}-{end}")
-
             all_ep_parts = collapsed + sorted(ranges, key=lambda s: int(s.split("-")[0]))
             episode_lines.append(f"S{int(season)}: {', '.join(all_ep_parts)}")
 
@@ -478,34 +477,35 @@ def generate_movie_message(movie_doc, base_name):
         if epi_str:
             epi_block = f"📺 ᴇᴘɪsᴏᴅᴇs : <b>\n{epi_str}</b>"
 
+    # ✅ Collecting details
     genres = movie_doc.get("genres", "N/A")
     quality_str = ", ".join(sorted(all_qualities)) if all_qualities else "N/A"
     language_str = ", ".join(sorted(all_languages)) if all_languages else "N/A"
     ott_str = ", ".join(sorted(all_ott_platforms)) if all_ott_platforms else "N/A"
 
+    # ✅ IMDB custom link generate
+    imdb_id = movie_doc.get("imdb_id", "")
+    imdb_numeric = imdb_id.replace("tt", "") if imdb_id else None
+    if imdb_numeric:
+        if primary_tag.lower() == "#series":
+            custom_link = f"https://filmy4uhd.vercel.app/ser/{imdb_numeric}"
+        else:
+            custom_link = f"https://filmy4uhd.vercel.app/mov/{imdb_numeric}"
+    else:
+        custom_link = "Link not available"
+
+    # ✅ Return formatted message
     return script.MOVIE_UPDATE_NOTIFY_TXT.format(
-        # pehle imdb_id ko nikal lo
-imdb_id = movie_doc.get("imdb_id", "")
-imdb_numeric = imdb_id.replace("tt", "") if imdb_id else None
-
-# ab movie/series ke hisaab se custom_link banao
-if primary_tag.lower() == "series":
-    custom_link = f"https://filmy4uhd.vercel.app/ser/{imdb_numeric}"
-else:
-    custom_link = f"https://filmy4uhd.vercel.app/mov/{imdb_numeric}"
-
-# fir format me custom_link bhi pass karo
-return script.MOVIE_UPDATE_NOTIFY_TXT.format(
-    poster_url=movie_doc.get("poster_url", ""),
-    imdb_url=movie_doc.get("imdb_url", ""),
-    filename=base_name,
-    tag=primary_tag,
-    genres=genres,
-    ott=ott_str,
-    quality=quality_str,
-    language=language_str,
-    episodes=epi_block,
-    rating=movie_doc.get("rating", "N/A"),
-    search_link=temp.B_LINK,
-    custom_link=custom_link   # ✅ new line add ki
-)
+        poster_url=movie_doc.get("poster_url", ""),
+        imdb_url=movie_doc.get("imdb_url", ""),
+        filename=base_name,
+        tag=primary_tag,
+        genres=genres,
+        ott=ott_str,
+        quality=quality_str,
+        language=language_str,
+        episodes=epi_block,
+        rating=movie_doc.get("rating", "N/A"),
+        search_link=temp.B_LINK,
+        custom_link=custom_link  # 🔥 yaha aa gaya
+    )
