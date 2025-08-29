@@ -484,15 +484,28 @@ def generate_movie_message(movie_doc, base_name):
     ott_str = ", ".join(sorted(all_ott_platforms)) if all_ott_platforms else "N/A"
 
     return script.MOVIE_UPDATE_NOTIFY_TXT.format(
-        poster_url=movie_doc.get("poster_url", ""),
-        imdb_url=movie_doc.get("imdb_url", ""),
-        filename=base_name,
-        tag=primary_tag,
-        genres=genres,
-        ott=ott_str,
-        quality=quality_str,
-        language=language_str,
-        episodes=epi_block,
-        rating=movie_doc.get("rating", "N/A"),
-        search_link=temp.B_LINK
-    )
+        # pehle imdb_id ko nikal lo
+imdb_id = movie_doc.get("imdb_id", "")
+imdb_numeric = imdb_id.replace("tt", "") if imdb_id else None
+
+# ab movie/series ke hisaab se custom_link banao
+if primary_tag.lower() == "series":
+    custom_link = f"https://filmy4uhd.vercel.app/ser/{imdb_numeric}"
+else:
+    custom_link = f"https://filmy4uhd.vercel.app/mov/{imdb_numeric}"
+
+# fir format me custom_link bhi pass karo
+return script.MOVIE_UPDATE_NOTIFY_TXT.format(
+    poster_url=movie_doc.get("poster_url", ""),
+    imdb_url=movie_doc.get("imdb_url", ""),
+    filename=base_name,
+    tag=primary_tag,
+    genres=genres,
+    ott=ott_str,
+    quality=quality_str,
+    language=language_str,
+    episodes=epi_block,
+    rating=movie_doc.get("rating", "N/A"),
+    search_link=temp.B_LINK,
+    custom_link=custom_link   # ✅ new line add ki
+)
