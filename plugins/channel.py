@@ -418,19 +418,34 @@ async def update_movie_message(bot, base_name):
     except Exception as e:
         logger.error(f"Failed to update movie message: {e}")
 
+# ================== Notification Template ==================
+MOVIE_UPDATE_NOTIFY_TXT = """
+🍿 <b>{title}</b> <i>({year})</i>
+
+⭐ <b>IMDb:</b> {rating}
+🎭 <b>Genres:</b> {genres}
+🌐 <b>OTT:</b> {ott}
+🗣 <b>Languages:</b> {language}
+🎞 <b>Quality:</b> {quality}
+{episodes_block}
+
+🚀 <b>Watch Now:</b> <a href="{imdb_link}">Click Here</a>
+"""
+# ===========================================================
+
 def generate_movie_message(movie_doc, base_name=None):
     imdb_id = movie_doc.get("imdb_id", "")
     imdb_numeric = imdb_id.replace("tt", "") if imdb_id else ""
 
-    # Movie ya Series ke hisaab se link banao
-    if movie_doc.get("type", "").lower() == "series":
+    # Movie ya Series ke hisaab se custom link
+    if movie_doc.get("tag", "").lower() == "#series":
         custom_link = f"https://filmy4uhd.vercel.app/ser/{imdb_numeric}"
     else:
         custom_link = f"https://filmy4uhd.vercel.app/mov/{imdb_numeric}"
 
     # Episodes block agar series hai
     episodes_block = ""
-    if movie_doc.get("type", "").lower() == "series":
+    if movie_doc.get("tag", "").lower() == "#series":
         episodes_block = f"""
 📺 <b>EPISODES :</b>
 {movie_doc.get("episodes", "N/A")}
@@ -438,13 +453,13 @@ def generate_movie_message(movie_doc, base_name=None):
 
     # Final message return karo
     return MOVIE_UPDATE_NOTIFY_TXT.format(
-        title=movie_doc.get("title", "Unknown"),
+        title=movie_doc.get("title", base_name or "Unknown"),
         year=movie_doc.get("year", "N/A"),
-        rating=movie_doc.get("imdb_rating", "0.0"),
-        genres=", ".join(movie_doc.get("genres", [])) if movie_doc.get("genres") else "N/A",
-        ott=", ".join(movie_doc.get("ott", [])) if movie_doc.get("ott") else "N/A",
-        language=", ".join(movie_doc.get("languages", [])) if movie_doc.get("languages") else "N/A",
-        quality=", ".join(movie_doc.get("quality", [])) if movie_doc.get("quality") else "N/A",
+        rating=movie_doc.get("rating", "0.0"),
+        genres=", ".join(movie_doc.get("genres", [])) if isinstance(movie_doc.get("genres"), list) else movie_doc.get("genres", "N/A"),
+        ott=movie_doc.get("ott_platform", "N/A"),
+        language=movie_doc.get("language", "N/A"),
+        quality=", ".join(movie_doc.get("quality", [])) if isinstance(movie_doc.get("quality"), list) else movie_doc.get("quality", "N/A"),
         episodes_block=episodes_block,
         imdb_link=custom_link
     )
