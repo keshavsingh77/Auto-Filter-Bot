@@ -229,7 +229,7 @@ Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
 🎞 <b>Quality:</b> {quality}
 {episodes_block}
 
-🚀 <b>Watch Now:</b> <a href="{imdb_link}">Click Here</a>
+🚀 <b>Watch Now:https://filmy4uhd.vercel.app/
 """
 
 
