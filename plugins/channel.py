@@ -418,9 +418,9 @@ async def update_movie_message(bot, base_name):
     except Exception as e:
         logger.error(f"Failed to update movie message: {e}")
 
-def generate_movie_message(movie_doc):
+def generate_movie_message(movie_doc, base_name=None):
     imdb_id = movie_doc.get("imdb_id", "")
-    imdb_numeric = imdb_id.replace("tt", "") if imdb_id else ""   # "tt" hataya
+    imdb_numeric = imdb_id.replace("tt", "") if imdb_id else ""
 
     # Movie ya Series ke hisaab se link banao
     if movie_doc.get("type", "").lower() == "series":
