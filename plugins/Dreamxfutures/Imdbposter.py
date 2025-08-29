@@ -18,11 +18,9 @@ def list_to_str(lst):
     return ""
 
 
-
-
-
 Image.MAX_IMAGE_PIXELS = None
 warnings.simplefilter("ignore", Image.DecompressionBombWarning)
+
 async def fetch_image(url, size=(860, 1200)):
     if not DREAMXBOTZ_IMAGE_FETCH:
         logger.info("Image fetching is disabled.")
@@ -38,7 +36,6 @@ async def fetch_image(url, size=(860, 1200)):
                 data = await response.read()
                 img = Image.open(BytesIO(data))
                 img = img.resize(size, Image.LANCZOS)
-
 
                 out = BytesIO()
                 img.save(out, format="JPEG")
@@ -85,6 +82,7 @@ async def get_movie_details(query, id=False, file=None):
             movieid = movieid[0].movieID
         else:
             movieid = query
+
         movie = ia.get_movie(movieid)
         ia.update(movie, info=['main', 'vote details'])
         if movie.get("original air date"):
@@ -93,6 +91,7 @@ async def get_movie_details(query, id=False, file=None):
             date = movie.get("year")
         else:
             date = "N/A"
+
         plot = movie.get('plot')
         if plot and len(plot) > 0:
             plot = plot[0]
@@ -100,7 +99,17 @@ async def get_movie_details(query, id=False, file=None):
             plot = movie.get('plot outline')
         if plot and len(plot) > 800:
             plot = plot[:800] + "..."
+
         poster_url = movie.get('full-size cover url')
+
+        # ✅ Custom link logic
+        kind = movie.get("kind", "").lower()
+        imdb_id = f"tt{movie.get('imdbID')}"
+        if "tv" in kind or "series" in kind:
+            custom_url = f"https://filmy4uhd.vercel.app/ser/{movieid}"
+        else:
+            custom_url = f"https://filmy4uhd.vercel.app/mov/{movieid}"
+
         return {
             'title': movie.get('title'),
             'votes': movie.get('votes'),
@@ -109,7 +118,7 @@ async def get_movie_details(query, id=False, file=None):
             "box_office": movie.get('box office'),
             'localized_title': movie.get('localized title'),
             'kind': movie.get("kind"),
-            "imdb_id": f"tt{movie.get('imdbID')}",
+            "imdb_id": imdb_id,
             "cast": list_to_str(movie.get("cast")),
             "runtime": list_to_str(movie.get("runtimes")),
             "countries": list_to_str(movie.get("countries")),
@@ -128,11 +137,13 @@ async def get_movie_details(query, id=False, file=None):
             'poster_url': poster_url,
             'plot': plot,
             'rating': str(movie.get("rating", "N/A")),
-            'url': f'https://www.imdb.com/title/tt{movieid}'
+            'url': f'https://www.imdb.com/title/{imdb_id}',
+            'custom_url': custom_url  # ✅ added custom url
         }
     except Exception as e:
         logger.error(f"An error occurred in get_movie_details: {e}")
         return None
+
 
 async def get_movie_detailsx(query, id=False, file=None):
     base_url = "https://bharath-boy-api.vercel.app/api/movie-posters"
@@ -196,5 +207,13 @@ async def get_movie_detailsx(query, id=False, file=None):
             break
     details['backdrop_url'] = backdrop_url
 
+    # ✅ add custom_url here also
+    if details.get("imdb_id"):
+        if "ser" in str(details.get("tmdb_url", "")).lower():
+            details['custom_url'] = f"https://filmy4uhd.vercel.app/ser/{details['imdb_id'].replace('tt','')}"
+        else:
+            details['custom_url'] = f"https://filmy4uhd.vercel.app/mov/{details['imdb_id'].replace('tt','')}"
+
     return details
+
 
