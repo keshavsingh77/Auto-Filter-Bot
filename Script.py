@@ -220,16 +220,18 @@ Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
-🎬 <b>{filename}</b>
-⭐ IMDb: {rating}
-🏷 Genres: {genres}
-🌐 OTT: {ott}
-🗣 Languages: {language}
-🎞 Quality: {quality}
-{episodes}
+🍿 <b>{title}</b> <i>({year})</i>
 
-🔗 Link: {custom_link}
+⭐ <b>IMDb:</b> {rating}
+🎭 <b>Genres:</b> {genres}
+🌐 <b>OTT:</b> {ott}
+🗣 <b>Languages:</b> {language}
+🎞 <b>Quality:</b> {quality}
+{episodes_block}
+
+🚀 <b>Watch Now:</b> <a href="{imdb_link}">Click Here</a>
 """
+
 
 
 
