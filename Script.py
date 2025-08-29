@@ -228,8 +228,9 @@ Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
 🎞 Quality: {quality}
 {episodes}
 
-🍿 <b><a href="{custom_link}">WATCH & DOWNLOAD</a></b> 🎥
+🔗 Link: {custom_link}
 """
+
 
 
 
