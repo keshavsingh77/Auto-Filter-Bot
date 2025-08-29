@@ -418,48 +418,81 @@ async def update_movie_message(bot, base_name):
     except Exception as e:
         logger.error(f"Failed to update movie message: {e}")
 
-# ================== Notification Template ==================
-MOVIE_UPDATE_NOTIFY_TXT = """
-🍿 <b>{title}</b> <i>({year})</i>
+def generate_movie_message(movie_doc, base_name):
+    all_qualities = set()
+    all_languages = set()
+    all_ott_platforms = set()
+    all_tags = set()
+    episodes_by_season = defaultdict(set)
 
-⭐ <b>IMDb:</b> {rating}
-🎭 <b>Genres:</b> {genres}
-🌐 <b>OTT:</b> {ott}
-🗣 <b>Languages:</b> {language}
-🎞 <b>Quality:</b> {quality}
-{episodes_block}
+    for file in movie_doc["files"]:
+        if file["quality"] != "N/A":
+            all_qualities.update(q.strip() for q in file["quality"].split(",") if q.strip())
+        if file["language"] != "N/A":
+            all_languages.update(l.strip() for l in file["language"].split(",") if l.strip())
+        if file["ott_platform"] != "N/A":
+            platforms = [p.strip() for p in file["ott_platform"].split("|") if p.strip()]
+            all_ott_platforms.update(platforms)
+        if file["tag"]:
+            all_tags.add(file["tag"])
+        if file.get("season") and file.get("episode"):
+            season = file["season"]
+            episode = file["episode"]
+            episodes_by_season[season].add(episode)
 
-🚀 <b>Watch Now:</b> <a href="{imdb_link}">Click Here</a>
-"""
-# ===========================================================
+    primary_tag = "#SERIES" if "#SERIES" in all_tags else "#MOVIE"
+    epi_block = ""
+    if episodes_by_season:
+        episode_lines = []
+        for season, episodes in sorted(episodes_by_season.items(), key=lambda x: int(x[0])):
+            singles = []
+            ranges = []
 
-def generate_movie_message(movie_doc, base_name=None):
-    imdb_id = movie_doc.get("imdb_id", "")
-    imdb_numeric = imdb_id.replace("tt", "") if imdb_id else ""
+            for ep in episodes:
+                if "-" in ep:
+                    ranges.append(ep)
+                else:
+                    try:
+                        singles.append(int(ep))
+                    except ValueError:
+                        ranges.append(ep)
 
-    # Movie ya Series ke hisaab se custom link
-    if movie_doc.get("tag", "").lower() == "#series":
-        custom_link = f"https://filmy4uhd.vercel.app/ser/{imdb_numeric}"
-    else:
-        custom_link = f"https://filmy4uhd.vercel.app/mov/{imdb_numeric}"
+            singles.sort()
+            collapsed = []
+            start = end = None
+            for num in singles:
+                if start is None:
+                    start = end = num
+                elif num == end + 1:
+                    end = num
+                else:
+                    collapsed.append(str(start) if start == end else f"{start}-{end}")
+                    start = end = num
+            if start is not None:
+                collapsed.append(str(start) if start == end else f"{start}-{end}")
 
-    # Episodes block agar series hai
-    episodes_block = ""
-    if movie_doc.get("tag", "").lower() == "#series":
-        episodes_block = f"""
-📺 <b>EPISODES :</b>
-{movie_doc.get("episodes", "N/A")}
-"""
+            all_ep_parts = collapsed + sorted(ranges, key=lambda s: int(s.split("-")[0]))
+            episode_lines.append(f"S{int(season)}: {', '.join(all_ep_parts)}")
 
-    # Final message return karo
-    return MOVIE_UPDATE_NOTIFY_TXT.format(
-        title=movie_doc.get("title", base_name or "Unknown"),
-        year=movie_doc.get("year", "N/A"),
-        rating=movie_doc.get("rating", "0.0"),
-        genres=", ".join(movie_doc.get("genres", [])) if isinstance(movie_doc.get("genres"), list) else movie_doc.get("genres", "N/A"),
-        ott=movie_doc.get("ott_platform", "N/A"),
-        language=movie_doc.get("language", "N/A"),
-        quality=", ".join(movie_doc.get("quality", [])) if isinstance(movie_doc.get("quality"), list) else movie_doc.get("quality", "N/A"),
-        episodes_block=episodes_block,
-        imdb_link=custom_link
+        epi_str = "\n".join(episode_lines)
+        if epi_str:
+            epi_block = f"📺 ᴇᴘɪsᴏᴅᴇs : <b>\n{epi_str}</b>"
+
+    genres = movie_doc.get("genres", "N/A")
+    quality_str = ", ".join(sorted(all_qualities)) if all_qualities else "N/A"
+    language_str = ", ".join(sorted(all_languages)) if all_languages else "N/A"
+    ott_str = ", ".join(sorted(all_ott_platforms)) if all_ott_platforms else "N/A"
+
+    return script.MOVIE_UPDATE_NOTIFY_TXT.format(
+        poster_url=movie_doc.get("poster_url", ""),
+        imdb_url=movie_doc.get("imdb_url", ""),
+        filename=base_name,
+        tag=primary_tag,
+        genres=genres,
+        ott=ott_str,
+        quality=quality_str,
+        language=language_str,
+        episodes=epi_block,
+        rating=movie_doc.get("rating", "N/A"),
+        search_link=temp.B_LINK
     )
