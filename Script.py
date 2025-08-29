@@ -219,21 +219,16 @@ Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
-</b><a href={poster_url}>📥</a><a href={imdb_url}>New {tag} Added</a></b>
+📥 New {type} Added  
 
-<blockquote>✨ ᴛɪᴛʟᴇ : <code>{filename}</code>
+✨ Title : {title}  
+🎭 Genres : {genres}  
+📺 OTT : {ott}  
+🎞️ Quality : {quality}  
+🎧 Audio : {lang}  
 
-
-🎭 ɢᴇɴʀᴇs : <b>{genres}</b>
-📺 ᴏᴛᴛ        : <b>{ott}</b>
-🎞️ ǫᴜᴀʟɪᴛʏ : <b>{quality}</b>
-🎧 ᴀᴜᴅɪᴏ    : <b>{language}</b>
-🔥 ʀᴀᴛɪɴɢ   : <b>{rating}</b>
-{episodes}
-</blockquote>
-
-
-🔍 <b>Sᴇᴀʀᴄʜ →</b> {search_link}
+🌐 Watch & Download More at:  
+👉 [Filmy4uHD](https://filmy4uhd.vercel.app)
 """
 
 
