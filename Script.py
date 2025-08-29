@@ -220,18 +220,17 @@ Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
-✨ New {tag} Added ✨
+🎬 <b>{filename}</b>
+⭐ IMDb: {rating}
+🏷 Genres: {genres}
+🌐 OTT: {ott}
+🗣 Languages: {language}
+🎞 Quality: {quality}
+{episodes}
 
-🎬 Title : {filename}
-🎭 Genres : {genres}
-📺 OTT : {ott}
-🎞️ Quality : {quality}
-🎧 Language : {language}
-⭐ Rating : {rating}
-
-🔎 Search : {search_link}
-🔗 IMDb Link : {custom_link}   ✅ yaha add kiya
+🍿 <b><a href="{custom_link}">WATCH & DOWNLOAD</a></b> 🎥
 """
+
 
 
 
