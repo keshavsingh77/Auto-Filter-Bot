@@ -220,30 +220,33 @@ Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
-🍿 <b>{title}</b> <i>({year})</i>
+</b><a href={poster_url}>📥</a><a href={imdb_url}>New {tag} Added</a></b>
 
-⭐ <b>IMDb:</b> {rating}
-🎭 <b>Genres:</b> {genres}
-🌐 <b>OTT:</b> {ott}
-🗣 <b>Languages:</b> {language}
-🎞 <b>Quality:</b> {quality}
-{episodes_block}
+<blockquote>✨ ᴛɪᴛʟᴇ : <code>{filename}</code>
 
-🚀 <b>Watch Now:https://filmy4uhd.vercel.app/
+
+🎭 ɢᴇɴʀᴇs : <b>{genres}</b>
+📺 ᴏᴛᴛ        : <b>{ott}</b>
+🎞️ ǫᴜᴀʟɪᴛʏ : <b>{quality}</b>
+🎧 ᴀᴜᴅɪᴏ    : <b>{language}</b>
+🔥 ʀᴀᴛɪɴɢ   : <b>{rating}</b>
+{episodes}
+</blockquote>
+
+🌐 Our Website:  
+👉 https://filmy4uhd.vercel.app
+
+
+🔍 <b>Sᴇᴀʀᴄʜ →</b> {search_link}
 """
-
-
-
-
-
-
 
     IMDB_TEMPLATE_TXT = """
 <b>🏷 Title</b>: <a href={url}>{title}</a>
 🎭 Genres: {genres}
 📆 Year: <a href={url}/releaseinfo>{year}</a>
 🌟 Rating: <a href={url}/ratings> ({rating}/10 )</a>
-
+🌐 Our Website:  
+👉 https://filmy4uhd.vercel.app
 
 ⏰Result Shown in: {remaining_seconds} <i>seconds</i> 🔥
 <b>Requested by : {message.from_user.mention}</b>"""
